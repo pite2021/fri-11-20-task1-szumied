@@ -10,9 +10,9 @@ class Simulation:
     def show_car_position():
         pass
 
-    def simulate(self, car, road):
+    def simulate(self):
         while(self.car.position[1] < self.road.roads_length):
-            Car.Drive()
+            self.car.drive()
 
 
 class Road:
@@ -40,7 +40,7 @@ class Road:
         print("\nObstacles layout:")
         self.print_layout()
 
-        print("\Layout shape:")
+        print("\nLayout shape:")
         print(self.layout.shape)
 
     def print_layout(self):
@@ -54,14 +54,15 @@ class Car:
         self.position = (0, 1)
 
     def drive(self):
-        self.position[1] = self.position[1] + 1
+        self.position = (self.position[0], self.position[1] + 1)
 
 
 def main():
     road = Road()
     car = Car()
     road = Road()
-    Simulation(car, road)
+    sim = Simulation(car, road)
+    sim.simulate()
 
 
 if __name__ == "__main__":
