@@ -60,10 +60,7 @@ def main():
     road = Road()
     car = Car()
     road = Road()
-
     Simulation(car, road)
-
-    # Simulate(car, road)
 
 
 if __name__ == "__main__":
