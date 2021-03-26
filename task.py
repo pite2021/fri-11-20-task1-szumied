@@ -10,8 +10,9 @@ class Simulation:
     def show_car_position():
         pass
 
-    def Simulate(car, road):
-        pass
+    def Simulate(self, car, road):
+        while(self.car.position[1] < self.road.roads_length):
+            Car.Drive()
 
 
 class Road:
