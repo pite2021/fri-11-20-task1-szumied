@@ -27,13 +27,17 @@ class Road:
             y = randrange(self.roads_length)
             return (x,y)
 
+        print("Obstacles coordinates:")
         while (obstacles_count < max_count_of_obstacles):
-            self.layout = self.layout[generate_obstacle_coordinates()] = 1
+            obstacle_coordinates = generate_obstacle_coordinates()
+            print(obstacle_coordinates)
+            # self.layout = self.layout[] = 1
+            obstacles_count = obstacles_count + 1
         
-        print("Obstacles layout:")
+        print("\nObstacles layout:")
         self.print_layout()
 
-        print("\nObstacles shape:")
+        print("\Layout shape:")
         print(self.layout.shape)
 
 
