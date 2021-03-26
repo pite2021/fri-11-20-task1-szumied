@@ -10,7 +10,7 @@ class Simulation:
     def show_car_position():
         pass
 
-    def Simulate(self, car, road):
+    def simulate(self, car, road):
         while(self.car.position[1] < self.road.roads_length):
             Car.Drive()
 
@@ -49,12 +49,12 @@ class Road:
 
 class Car:
     def __init__(self):
-        self.wheel_angle = 0  # - 90 left, 90 right, 0 forward
+        self.wheel_angle = 0  # -90 left, 90 right, 0 forward
         self.speed = 0
         self.position = (0, 1)
 
-    def Drive():
-        pass
+    def drive(self):
+        self.position[1] = self.position[1] + 1
 
 
 def main():
