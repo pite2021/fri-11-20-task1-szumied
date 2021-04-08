@@ -1,5 +1,7 @@
 """Module containing events and car objects."""
 
+import random
+import time
 from dataclasses import dataclass
 from typing import Callable
 from typing import List
@@ -37,8 +39,10 @@ class Car:
         self.wheel_angle = angle
         self.update_status(f"Set wheel angle to {angle}")
 
-    def wait(self, time):
-        print(f"[Speed: {self.speed}, wheel angle: {self.wheel_angle}] Waiting {time}.")
+    def wait(self, wait_time):
+        print(
+            f"[Speed: {self.speed}, wheel angle: {self.wheel_angle}] Waiting {wait_time}."
+        )
 
     def avoid_obstacle(self):
         angle = 45
@@ -56,7 +60,7 @@ class Event:
     actions: List[Callable]
 
 
-events_list = [
+EVENTS_LIST = [
     Event("Drive Normally", 0, [lambda car: car.set_speed(50)]),
     Event(
         "Red Light",
@@ -69,7 +73,7 @@ events_list = [
     ),
     Event("Fantasize about street racing", 4, [lambda car: car.modify_speed(100)]),
     Event(
-        "Remember phone's in the kitchen",
+        "Remember phone's left behind",
         8,
         [lambda car: car.set_angle(180), lambda car: car.set_angle(0)],
     ),
@@ -77,9 +81,24 @@ events_list = [
 ]
 
 
+class Simulation:
+    """Contains the simulation method. Could use asyncio, or threading module later on."""
+
+    step_time = 1
+
+    def __init__(self, car):
+        self.car = car
+
+    def run(self):
+        while True:
+            random_event = random.choice(EVENTS_LIST)
+            self.car.act(random_event)
+            time.sleep(self.step_time)
+
+
 def main():
     car1 = Car()
-    [car1.act(event) for event in events_list]
+    Simulation(car1).run()
 
 
 if __name__ == "__main__":
