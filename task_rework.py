@@ -1,9 +1,13 @@
+"""Module containing events and car objects."""
+
 from dataclasses import dataclass
 from typing import Callable
 from typing import List
 
 
 class Car:
+    """Car object with 3 basic parameters: speed, angle, status."""
+
     def __init__(self):
         self.speed = 0
         self.wheel_angle = 0
@@ -45,6 +49,8 @@ class Car:
 
 @dataclass
 class Event:
+    """An event for Car to act upon"""
+
     type: str
     time: int
     actions: List[Callable]
@@ -52,7 +58,15 @@ class Event:
 
 events_list = [
     Event("Drive Normally", 0, [lambda car: car.set_speed(50)]),
-    Event("Red Light", 3, [lambda car: car.set_speed(0), lambda car: car.wait(10)]),
+    Event(
+        "Red Light",
+        3,
+        [
+            lambda car: car.set_speed(0),
+            lambda car: car.wait(10),
+            lambda car: car.set_speed(50),
+        ],
+    ),
     Event("Fantasize about street racing", 4, [lambda car: car.modify_speed(100)]),
     Event(
         "Remember phone's in the kitchen",
